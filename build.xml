@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Community" default="dist" basedir=".">
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+  <property name="lib" location="lib"/>
+
+  <target name="compile" description="compile the source " >
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}" destdir="${build}" classpath="${lib}"/>
+  </target>
+	
+  <target name="dist" depends="compile" description="generate the distribution" >
+    <delete file="${dist}/community.jar"/>
+    <jar destfile="${dist}/community.jar" basedir="${build}" manifest="MANIFEST.MF">
+        <zipfileset src="${lib}/hsqldb.jar"/>
+    	<fileset file="Community.ico"/>
+    </jar>
+  </target>
+
+</project>
+
